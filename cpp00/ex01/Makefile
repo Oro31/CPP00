@@ -4,8 +4,8 @@ CC = clang++
 
 NAME = PhoneBook
 
-SRC = contact.cpp	\
-	  repertoire.cpp	\
+SRC = Contact.cpp	\
+	  PhoneBook.cpp	\
 	  main.cpp
 
 OBJ = $(SRC:.cpp=.o)

@@ -1,9 +1,9 @@
-#include "phone_book.h"
-#include "repertoire.hpp"
+#include "header.h"
+#include "PhoneBook.hpp"
 
 int	main()
 {
-	repertoire	rep;
+	PhoneBook	rep;
 	std::cout << "$>";
 	for (std::string line; std::getline(std::cin, line);) {
 		if (std::strcmp("EXIT", line.c_str()) == 0) {
