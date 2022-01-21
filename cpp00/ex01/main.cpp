@@ -13,7 +13,9 @@ int	main()
 		} else if (std::strcmp("SEARCH", line.c_str()) == 0) {
 			rep.search_contact();
 		} else {
-			std::cout << line << std::endl;
+			std::cout << "Error: ";
+			std::cout << line;
+			std::cout << ": command not found" << std::endl;
 			std::cout << "$>";
 		}
 	}

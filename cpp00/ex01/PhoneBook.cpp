@@ -36,25 +36,49 @@ void	PhoneBook::search_contact() {
 	std::string id_disp;
 	std::getline(std::cin, id_disp);
 	if (std::strcmp("0", id_disp.c_str()) == 0) {
-		contacts[0].search();
+		if (nb_contacts > 0)
+			contacts[0].search();
+		else
+			std::cout << "contact not assigned yet" << std::endl;
 	} else if (std::strcmp("1", id_disp.c_str()) == 0) {
-		contacts[1].search();
+		if (nb_contacts > 1)
+			contacts[1].search();
+		else
+			std::cout << "contact not assigned yet" << std::endl;
 	} else if (std::strcmp("2", id_disp.c_str()) == 0) {
-		contacts[2].search();
+		if (nb_contacts > 2)
+			contacts[2].search();
+		else
+			std::cout << "contact not assigned yet" << std::endl;
 	} else if (std::strcmp("3", id_disp.c_str()) == 0) {
-		contacts[3].search();
+		if (nb_contacts > 3)
+			contacts[3].search();
+		else
+			std::cout << "contact not assigned yet" << std::endl;
 	} else if (std::strcmp("4", id_disp.c_str()) == 0) {
-		contacts[4].search();
+		if (nb_contacts > 4)
+			contacts[4].search();
+		else
+			std::cout << "contact not assigned yet" << std::endl;
 	} else if (std::strcmp("5", id_disp.c_str()) == 0) {
-		contacts[5].search();
+		if (nb_contacts > 5)
+			contacts[5].search();
+		else
+			std::cout << "contact not assigned yet" << std::endl;
 	} else if (std::strcmp("6", id_disp.c_str()) == 0) {
-		contacts[6].search();
+		if (nb_contacts > 6)
+			contacts[6].search();
+		else
+			std::cout << "contact not assigned yet" << std::endl;
 	} else if (std::strcmp("7", id_disp.c_str()) == 0) {
-		contacts[7].search();
+		if (nb_contacts > 7)
+			contacts[7].search();
+		else
+			std::cout << "contact not assigned yet" << std::endl;
 	} else {
 		std::cout << "Error: ";
 		std::cout << id_disp;
-		std::cout << ": index not found" << std::endl;
+		std::cout << ": is not an index" << std::endl;
 	}
 	std::cout << "$>";
 }
