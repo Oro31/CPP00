@@ -5,6 +5,8 @@ void	Contact::add_index(int n) {
 }
 
 void	Contact::add_first_name() {
+	if (first_name.length() > 0)
+		first_name = "";
 	while (first_name.length() < 1) {
 		std::cout << "first name: ";
 		std::getline(std::cin, first_name);
@@ -12,6 +14,8 @@ void	Contact::add_first_name() {
 }
 
 void	Contact::add_last_name() {
+	if (last_name.length() > 0)
+		last_name = "";
 	while (last_name.length() < 1) {
 		std::cout << "last name: ";
 		std::getline(std::cin, last_name);
@@ -19,6 +23,8 @@ void	Contact::add_last_name() {
 }
 
 void	Contact::add_nick_name() {
+	if (nick_name.length() > 0)
+		nick_name = "";
 	while (nick_name.length() < 1) {
 		std::cout << "nickname: ";
 		std::getline(std::cin, nick_name);
@@ -26,6 +32,8 @@ void	Contact::add_nick_name() {
 }
 
 void	Contact::add_phone_number() {
+	if (phone_number.length() > 0)
+		phone_number = "";
 	while (phone_number.length() < 1) {
 		std::cout << "phone number: ";
 		std::getline(std::cin, phone_number);
@@ -33,6 +41,8 @@ void	Contact::add_phone_number() {
 }
 
 void	Contact::add_darkest_secret() {
+	if (darkest_secret.length() > 0)
+		darkest_secret = "";
 	while (darkest_secret.length() < 1) {
 		std::cout << "darkest secret: ";
 		std::getline(std::cin, darkest_secret);
