@@ -8,9 +8,9 @@ class	PhoneBook
 {
 	public:
 
+	PhoneBook();
 	void	add_contact();
 	void	search_contact();
-	void	disp_cts(std::string str);
 
 	private:
 
