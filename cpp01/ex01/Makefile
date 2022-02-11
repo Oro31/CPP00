@@ -2,12 +2,11 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
 
 CC = c++
 
-NAME = zomzom
+NAME = horde 
 
 SRC = main.cpp	\
 	  Zombie.cpp\
-	  newZombie.cpp	\
-	  randomChump.cpp
+	  ZombieHorde.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

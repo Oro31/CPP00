@@ -2,18 +2,15 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
 
 CC = c++
 
-NAME = zomzom
+NAME = adresses 
 
-SRC = main.cpp	\
-	  Zombie.cpp\
-	  newZombie.cpp	\
-	  randomChump.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
 DEP = $(OBJ:%.o=%.d)
 
--include $(DEP)
+#-include $(DEP)
 
 all: $(NAME)
 
