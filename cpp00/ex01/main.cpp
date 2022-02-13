@@ -1,9 +1,9 @@
 #include "header.h"
 #include "PhoneBook.hpp"
 
-int	main()
-{
+int	main() {
 	PhoneBook	rep;
+
 	std::cout << "$>";
 	for (std::string line; std::getline(std::cin, line);) {
 		if (std::strcmp("EXIT", line.c_str()) == 0) {

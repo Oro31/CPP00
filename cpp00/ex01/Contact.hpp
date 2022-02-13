@@ -3,8 +3,7 @@
 
 #include "header.h"
 
-class Contact
-{
+class Contact {
 	public:
 
 	void	add_index(int n);

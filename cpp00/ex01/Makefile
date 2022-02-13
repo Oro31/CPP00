@@ -1,6 +1,6 @@
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
 
-CC = clang++
+CC = c++
 
 NAME = PhoneBook
 
@@ -12,12 +12,15 @@ OBJ = $(SRC:.cpp=.o)
 
 DEP = $(OBJ:%.o=%.d)
 
--include $(DEP)
+%.o: %.cpp
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) -o $(NAME) $(OBJ)
+
+-include $(DEP)
 
 clean:
 	rm -f $(OBJ)

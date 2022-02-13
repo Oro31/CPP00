@@ -7,6 +7,7 @@ PhoneBook::PhoneBook() {
 
 void	PhoneBook::add_contact() {
 	Contact	new_con;
+
 	new_con.add_index(index);
 	new_con.add_first_name();
 	new_con.add_last_name();

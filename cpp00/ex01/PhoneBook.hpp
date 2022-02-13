@@ -4,8 +4,7 @@
 #include "header.h"
 #include "Contact.hpp"
 
-class	PhoneBook
-{
+class	PhoneBook {
 	public:
 
 	PhoneBook();
