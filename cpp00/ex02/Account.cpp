@@ -1,6 +1,6 @@
 #include "Account.hpp"
-#include "iostream"
-#include "ctime"
+#include <iostream>
+#include <ctime>
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
@@ -116,6 +116,7 @@ void	Account::displayStatus(void) const {
 void	Account::_displayTimestamp(void) {
 	std::time_t	t = std::time(0);
 	struct tm	*timeinfo;
+
 	timeinfo = gmtime(&t);
 	std::cout << "[" ;
 	std::cout << 1900 + timeinfo->tm_year;
