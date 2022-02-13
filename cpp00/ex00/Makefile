@@ -1,4 +1,4 @@
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
 
 CC = c++
 
@@ -10,15 +10,15 @@ OBJ = $(SRC:.cpp=.o)
 
 DEP = $(OBJ:%.o=%.d)
 
--include $(DEP)
-
 %.o: %.cpp
-	$(CC) $(CPPFLAGS) -MMD -c $< -o $@
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) -o $(NAME) $(OBJ)
+
+-include $(DEP)
 
 clean:
 	rm -f $(OBJ) $(DEP)

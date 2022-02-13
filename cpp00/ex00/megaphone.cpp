@@ -1,8 +1,7 @@
-#include "iostream"
-#include "cctype"
+#include <iostream>
+#include <cctype>
 
-int	main(int argc, char **argv)
-{
+int	main(int argc, char **argv) {
 	if (argc == 1)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 	else if (argc > 1) {
