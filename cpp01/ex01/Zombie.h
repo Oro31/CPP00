@@ -1,16 +1,14 @@
 #ifndef ZOMBIE_H
 #define ZOMBIE_H
 
-#include "iostream"
+#include <iostream>
 
-class	Zombie 
-{
+class	Zombie {
 	public:
 
 	Zombie(void);
 	Zombie(std::string name);
 	~Zombie(void);
-
 	void	announce(void);
 	void	getName(std::string name);
 

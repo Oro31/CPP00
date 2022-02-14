@@ -10,8 +10,6 @@ OBJ = $(SRC:.cpp=.o)
 
 DEP = $(OBJ:%.o=%.d)
 
-#-include $(DEP)
-
 all: $(NAME)
 
 .cpp.o:
@@ -19,6 +17,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) -o $(NAME) $(OBJ)
+
+#-include $(DEP)
 
 clean:
 	rm -f $(OBJ)
