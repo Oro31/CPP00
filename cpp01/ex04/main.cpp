@@ -17,21 +17,19 @@ int	main(int argc, char **argv) {
 
 		fichier_replace_name = argv[1];
 		fichier_replace_name.append(".replace");
-		std::ofstream	fichier_out(fichier_replace_name.c_str(), std::ios::out | std::ios::trunc);
+		std::ofstream	fichier_out(fichier_replace_name.c_str(),
+				std::ios::out | std::ios::trunc);
 
 		if (fichier_out) {
 		std::string replace = "";
 
 			while (getline(fichier_in, line)) {
-				if (replace[0]) {
-					fichier_out << replace << "\n";
-					replace = "";
-				}
 				int	i = 0;
 				while (line[i]) {
 					if (line[i] == str1[0]) {
 						int	j = 1;
-						while (line[i + j] && line[i + j] == str1[j] && j < (int)str1.length()) {
+						while (line[i + j] && line[i + j] == str1[j]
+							&& j < (int)str1.length()) {
 							j++;
 						}
 						if (j == (int)str1.length()) {
@@ -45,8 +43,9 @@ int	main(int argc, char **argv) {
 						replace += line[i];
 					i++;
 				}
+				fichier_out << replace << "\n";
+				replace = "";
 			}
-			fichier_out << replace;
 			fichier_out.close();
 		}
 		else
