@@ -2,12 +2,10 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
 
 CC = c++
 
-NAME = past_by_ref 
+NAME = karenFilter 
 
 SRC = main.cpp	\
-	  HumanA.cpp	\
-	  HumanB.cpp	\
-	  Weapon.cpp
+	  Karen.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

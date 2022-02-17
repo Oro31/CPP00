@@ -18,7 +18,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) -o $(NAME) $(OBJ)
 
-#-include $(DEP)
+-include $(DEP)
 
 clean:
 	rm -f $(OBJ)
