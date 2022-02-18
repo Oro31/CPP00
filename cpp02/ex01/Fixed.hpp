@@ -22,7 +22,7 @@ class	Fixed {
 
 	private:
 	int					_fvalue;
-	static const int	_nb_frctional_bits = 8;
+	static const int	_nb_fractional_bits = 8;
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
