@@ -6,21 +6,19 @@ Fixed::Fixed(void) {
 }
 
 Fixed::Fixed(const int i) {
-	float	fixed;
+	int	fixed;
 
 	std::cout << "Int constructor called\n";
-	fixed = i * pow(2, _nb_fractional_bits);
-	fixed = round(fixed);
+	fixed = i << _nb_fractional_bits;
 	_fvalue = fixed;
 }
 
 Fixed::Fixed(const float f) {
-	float	fixed;
+	int	fixed;
 
 	std::cout << "Float constructor called\n";
-	fixed = f * pow(2, _nb_fractional_bits);
-	fixed = roundf(fixed);
-	_fvalue = (int)fixed;
+	fixed = roundf(f * (float)(1 << _nb_fractional_bits));
+	_fvalue = fixed;
 }
 
 Fixed::Fixed(const Fixed &fixed) {
@@ -42,14 +40,14 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
 float	Fixed::toFloat(void) const {
 	float	ret;
 
-	ret = ((float)_fvalue) / pow(2, _nb_fractional_bits);
+	ret = (float)_fvalue / (float)(1 << _nb_fractional_bits);
 	return	ret;
 }
 
 int	Fixed::toInt(void) const {
 	int	ret;
 
-	ret = (int)(_fvalue) / pow(2, _nb_fractional_bits);
+	ret = _fvalue / (1 << _nb_fractional_bits);
 	return ret;
 }
 
