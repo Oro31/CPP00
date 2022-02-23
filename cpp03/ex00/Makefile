@@ -5,7 +5,7 @@ CC = c++
 NAME = claptrap 
 
 SRC = main.cpp	\
-	  ClapTrap.cpp\
+	  ClapTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
