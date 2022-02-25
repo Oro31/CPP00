@@ -6,7 +6,7 @@ NAME = horde
 
 SRC = main.cpp	\
 	  Zombie.cpp\
-	  ZombieHorde.cpp
+	  zombieHorde.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
