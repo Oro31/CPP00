@@ -6,7 +6,7 @@
 /*   By: melperri <melperri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 04:07:38 by melperri          #+#    #+#             */
-/*   Updated: 2022/02/23 17:35:19 by rvalton          ###   ########.fr       */
+/*   Updated: 2022/03/04 00:31:57 by rvalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_print_energy(const ClapTrap &claptrap) {
 }
 
 void	ft_print_hit(const ClapTrap &claptrap) {
-	std::cout << claptrap.getName() << " has "
+	std::cout << "ClapTrap " << claptrap.getName() << " has "
 		<< GREEN << claptrap.getHit() << END_COLOR
 		<< " hit points." << std::endl;
 }
@@ -51,7 +51,6 @@ int	main(void) {
 	rambo.attack(john.getName());
 	john.takeDamage(rambo.getDamage());
 	rambo.attack(john.getName());
-	john.takeDamage(rambo.getDamage());
 	rambo.beRepaired(1);
 
 	return 0;

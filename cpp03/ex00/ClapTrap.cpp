@@ -25,7 +25,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &claptrap) {
 
 ClapTrap::ClapTrap(const std::string name) : _name(name),
 	_hit(10), _energie(10), _damage(0) {
-	std::cout << GREEN << "ClapTrap " << name << " parametric Constructor" 
+	std::cout << GREEN << "ClapTrap " << name << " Constructor" 
 		<< END_COLOR << std::endl;
 	return ;
 }
@@ -63,40 +63,58 @@ void	ClapTrap::setName(const std::string name) {
 }
 
 void	ClapTrap::attack(const std::string &target) {
-	if (this->getEnergie() > 1) {
-		std::cout << "ClapTrap " << this->getName() << " attack " 
-			<< target << ", causing " << this->getDamage() 
+	if (_hit == 0) {
+		std::cout << "ClapTrap " << _name << " is dead..."
+			<< " can't attack." << std::endl;
+	}
+	else if (_energie > 1) {
+		std::cout << "ClapTrap " << _name << " attack " 
+			<< target << ", causing " << _damage 
 			<< " points of damage" << std::endl;
 		_energie--;
 	}
 	else {
-		std::cout << "ClapTrap " << this->getName()
-			<< ": not enought energie" << std::endl;
+		std::cout << "ClapTrap " << _name
+			<< " don't has enought energie to attack" << std::endl;
 	}
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
-	std::cout << "ClapTrap " << this->getName() << " taking " << amount
-		<< " damage !" << std::endl;
-	if (amount < this->getHit())
-		_hit -= amount;
-	else
-		_hit = 0;
+	if (_hit == 0) {
+		std::cout << "ClapTrap " << _name << " is dead..."
+			<< " can't take damage." << std::endl;
+	}
+	else {
+		std::cout << "ClapTrap " << _name << " taking " << amount
+			<< " damage !" << std::endl;
+		if (amount < _hit)
+			_hit -= amount;
+		else
+			_hit = 0;
+	}
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
-	std::cout << "ClapTrap " << this->getName() << " try to repair...\n";
-	if (this->getEnergie() > 1) {
-		_hit += amount;
-		_energie--;
-		std::cout << "Repairing succeed ! " << amount
-			<< " hits points repaired." << std::endl;
+	if (_hit == 0) {
+		std::cout << "ClapTrap " << _name << " is dead..."
+			<< " can't repair himself." << std::endl;
 	}
-	else
-		std::cout << "Can't repair." << std::endl;
+	else {
+		std::cout << "ClapTrap " << _name << " try to repair...\n";
+		if (_energie > 1) {
+			_hit += amount;
+			_energie--;
+			std::cout << "Repairing succeed ! " << amount
+				<< " hits points repaired." << std::endl;
+		}
+		else {
+			std::cout << "don't has enought energie to attack" 
+				<< std::endl;
+		}
+	}
 }
 
 ClapTrap::~ClapTrap(void) {
-	std::cout << GREEN << "ClapTrap " << this->getName() << " destroyed" 
+	std::cout << GREEN << "ClapTrap " << _name << " destroyed" 
 		<< END_COLOR << std::endl;
 }
