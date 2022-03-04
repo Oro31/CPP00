@@ -2,7 +2,6 @@
 
 ScavTrap::ScavTrap(void) {
 	std::cout << "ScavTrap " << "Default constructor" << std::endl;
-	return ;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &scavtrap) {
@@ -13,43 +12,46 @@ ScavTrap::ScavTrap(const ScavTrap &scavtrap) {
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &scavtrap) {
 	std::cout << "ScavTrap copy assignement operator" << std::endl;
-	_name = scavtrap._name;
-	_hit = scavtrap._hit;
-	_energie = scavtrap._energie;
-	_damage = scavtrap._damage;
+	this->setName(scavtrap.getName());
+	this->setHit(scavtrap.getHit());
+	this->setEnergie(scavtrap.getEnergie());
+	this->setDamage(scavtrap.getDamage());
 	return *this;
 }
 
 ScavTrap::ScavTrap(const std::string name) {
 	std::cout << "ScavTrap " << name << " Constructor" << std::endl;
-	_name = name;
-	_hit = 100;
-	_energie = 50;
-	_damage = 20;
-	return ;
+	this->setName(name);
+	this->setHit(100);
+	this->setEnergie(50);
+	this->setDamage(20);
 }
 
 void	ScavTrap::attack(const std::string &target) {
-	if (_energie >= 1) {
-		std::cout << "ScavTrap " << _name << " attack "
-			<< target << ", causing " << _damage
+	if (this->getHit() == 0) {
+		std::cout << "ScavTrap " << this->getName() << " is dead..."
+			<< " can't attack." << std::endl;
+	}
+	else if (this->getEnergie() >= 1) {
+		std::cout << "ScavTrap " << this->getName() << " attack "
+			<< target << ", causing " << this->getDamage()
 			<< " points of damage" << std::endl;
-		_energie--;
+		this->setEnergie(this->getEnergie() - 1);
 	}
 	else {
-		std::cout << "ScavTrap " << _name
-			<< ": not enought energie" << std::endl;
+		std::cout << "ScavTrap " << this->getName()
+			<< " don't has enought energie to attack" << std::endl;
 	}
-	return ;
 }
 
 void	ScavTrap::guardGate(void) {
-	std::cout << "ScavTrap " << _name
-		<< " is now in Gate keeper mode.\n";
-	return ;
+	std::cout << "ScavTrap " << this->getName();
+	if (this->getHit() == 0)
+		std::cout << " is dead... can't go in gate keeper mode" << std::endl;
+	else
+		std ::cout << " is now in Gate keeper mode." << std::endl;
 }
 
 ScavTrap::~ScavTrap(void) {
-	std::cout << "ScavTrap " << _name << " destroyed" << std::endl;
-	return ;
+	std::cout << "ScavTrap " << this->getName() << " destroyed" << std::endl;
 }

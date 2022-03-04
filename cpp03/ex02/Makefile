@@ -2,11 +2,11 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
 
 CC = c++
 
-NAME = flagtrap 
+NAME = fragtrap 
 
 SRC = main.cpp	\
-	  ClapTrap.cpp\
-	  ScavTrap.cpp\
+	  ClapTrap.cpp	\
+	  ScavTrap.cpp	\
 	  FragTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)

@@ -1,8 +1,7 @@
-#ifndef FLAGTRAP_HPP
-#define FLAGTRAP_HPP
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
 #include "ClapTrap.hpp"
-#include "couleur.h"
 
 class	FragTrap : public ClapTrap {
 	public:
@@ -13,10 +12,7 @@ class	FragTrap : public ClapTrap {
 	~FragTrap(void);
 	FragTrap &operator=(const FragTrap &fragtrap);
 
-	void	attack(const std::string &target);
-	void	highFivesGuys(void);
-
-	private:
+	void			highFivesGuys(void);
 };
 
 #endif

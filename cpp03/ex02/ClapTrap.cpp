@@ -63,7 +63,11 @@ void	ClapTrap::setName(const std::string name) {
 }
 
 void	ClapTrap::attack(const std::string &target) {
-	if (_energie >= 1) {
+	if (_hit == 0) {
+		std::cout << "ClapTrap " << _name << " is dead..."
+			<< " can't attack." << std::endl;
+	}
+	else if (_energie >= 1) {
 		std::cout << "ClapTrap " << _name << " attack " 
 			<< target << ", causing " << _damage 
 			<< " points of damage" << std::endl;
@@ -71,29 +75,43 @@ void	ClapTrap::attack(const std::string &target) {
 	}
 	else {
 		std::cout << "ClapTrap " << _name
-			<< ": not enought energie" << std::endl;
+			<< " don't has enought energie to attack" << std::endl;
 	}
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
-	std::cout << "ClapTrap " << _name << " taking " << amount
-		<< " damage !" << std::endl;
-	if (amount < _hit)
-		_hit -= amount;
-	else
-		_hit = 0;
+	if (_hit == 0) {
+		std::cout << "ClapTrap " << _name << " is dead..."
+			<< " can't take damage." << std::endl;
+	}
+	else {
+		std::cout << "ClapTrap " << _name << " taking " << amount
+			<< " damage !" << std::endl;
+		if (amount < _hit)
+			_hit -= amount;
+		else
+			_hit = 0;
+	}
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
-	std::cout << "ClapTrap " << _name << " try to repair...\n";
-	if (_energie >= 1) {
-		_hit += amount;
-		_energie--;
-		std::cout << "Repairing succeed ! " << amount
-			<< " hits points repaired." << std::endl;
+	if (_hit == 0) {
+		std::cout << "ClapTrap " << _name << " is dead..."
+			<< " can't repair himself." << std::endl;
 	}
-	else
-		std::cout << "Can't repair." << std::endl;
+	else {
+		std::cout << "ClapTrap " << _name << " try to repair...\n";
+		if (_energie >= 1) {
+			_hit += amount;
+			_energie--;
+			std::cout << "Repairing succeed ! " << amount
+				<< " hits points repaired." << std::endl;
+		}
+		else {
+			std::cout << "don't has enought energie to repair" 
+				<< std::endl;
+		}
+	}
 }
 
 ClapTrap::~ClapTrap(void) {

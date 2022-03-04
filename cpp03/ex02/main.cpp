@@ -7,12 +7,12 @@ int	main(void) {
 	FragTrap	f_gege("Gege");
 
 	while (s_benji.getEnergie() > 0) {
-		s_benji.attack("Gege");
-		f_gege.takeDamage(s_benji.getDamage());
-		std::cout << "Gege hit = " << f_gege.getHit() << std::endl;;
-		while (f_gege.getEnergie() > 0 && f_gege.getHit() < 100) {
-			f_gege.beRepaired(10);
-			std::cout << "Gege hit = " << f_gege.getHit() << std::endl;;
+		f_gege.attack("Benji");
+		s_benji.takeDamage(f_gege.getDamage());
+		std::cout << "Benji hit = " << s_benji.getHit() << std::endl;;
+		while (s_benji.getEnergie() > 0 && s_benji.getHit() < 100) {
+			s_benji.beRepaired(10);
+			std::cout << "Benji hit = " << s_benji.getHit() << std::endl;;
 		}
 	}
 	f_gege.highFivesGuys();
