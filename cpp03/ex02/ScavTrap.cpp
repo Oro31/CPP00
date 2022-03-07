@@ -2,6 +2,10 @@
 
 ScavTrap::ScavTrap(void) {
 	std::cout << "ScavTrap " << "Default constructor" << std::endl;
+	this->setName("scavtrap_default_name");
+	this->setHit(100);
+	this->setEnergie(50);
+	this->setDamage(20);
 }
 
 ScavTrap::ScavTrap(const ScavTrap &scavtrap) {

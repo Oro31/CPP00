@@ -33,17 +33,17 @@ ScavTrap::ScavTrap(const std::string name) {
 
 void	ScavTrap::attack(const std::string &target) {
 	if (this->getHit() == 0) {
-		std::cout << "ScavTrap " << this->getName() << " is dead..."
+		std::cout << "ScavTrap " << _name << " is dead..."
 			<< " can't attack." << std::endl;
 	}
 	else if (this->getEnergie() >= 1) {
-		std::cout << "ScavTrap " << this->getName() << " attack "
+		std::cout << "ScavTrap " << _name << " attack "
 			<< target << ", causing " << this->getDamage()
 			<< " points of damage" << std::endl;
 		this->setEnergie(this->getEnergie() - 1);
 	}
 	else {
-		std::cout << "ScavTrap " << this->getName()
+		std::cout << "ScavTrap " << _name
 			<< " don't has enought energie to attack" << std::endl;
 	}
 }

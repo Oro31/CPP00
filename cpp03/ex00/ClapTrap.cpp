@@ -1,6 +1,7 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) {
+ClapTrap::ClapTrap(void) : _name("claptrap_default_name"), _hit(10),
+	_energie(10), _damage(0) {
 	std::cout << GREEN << "ClapTrap " << "Default constructor" 
 		<< END_COLOR << std::endl;
 	return ;
