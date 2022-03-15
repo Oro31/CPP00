@@ -1,22 +1,21 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : _target("home"), _name("DefaultShrubberyCreation"),
-	_signed(false), _sign_grade(145), _exe_grade(137) {
+ShrubberyCreationForm::ShrubberyCreationForm(void) : _name("DefaultShrubberyCreation"),
+	_signed(false), _sign_grade(145), _exe_grade(137), _target("home") {
 	std::cout << GREEN << "ShrubberyCreationForm Default constructor" 
 		<< END_COLOR << std::endl;
 	return ;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : _target(target), _name("Shrubbery"),
-	_signed(false),	_sign_grade(145), _exe_grade(137) {
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : _name("Shrubbery"),
+	_signed(false),	_sign_grade(145), _exe_grade(137), _target(target) {
 	std::cout << GREEN << "ShrubberyCreationForm parametric constructor" 
 		<< END_COLOR << std::endl;
 	return ;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &form) : _target(form._target),
-	_name(form._name), _signed(form._signed), _sign_grade(form._sign_grade),
-	_exe_grade(form._exe_grade) {
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &form) : _name(form._name),
+	_signed(form._signed), _sign_grade(form._sign_grade), _exe_grade(form._exe_grade) {
 	std::cout << GREEN << "ShrubberyCreationForm copy Constructor" 
 		<< END_COLOR << std::endl;
 	*this = form;
@@ -80,7 +79,7 @@ void	ShrubberyCreationForm::beSigned(Bureaucrat &bureaucrat) {
 		_signed = true;
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const &executor) {
+void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 	if (executor.getGrade() > _exe_grade) {
 		throw(GradeTooLowException());
 	} else {

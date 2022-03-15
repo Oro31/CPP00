@@ -80,15 +80,25 @@ void	RobotomyRequestForm::beSigned(Bureaucrat &bureaucrat) {
 		_signed = true;
 }
 
-void	RobotomyRequestForm::execute() {
-	std::cout << "bruiiiuizuizuizouiii...";
-	srand(time(NULL));
-	int rand_value = rand();
-	rand_value = rand_value % 2;
-	if (rand_value == 1) {
-		std::cout << _target << " has been robotomized successfully !" << std::endl;
+void	RobotomyRequestForm::execute(Bureaucrat const &executor) const {
+	if (executor.getGrade() > _exe_grade) {
+		throw(GradeTooLowException());
 	} else {
-		std::cout << "Robotomy of " << _target << " failed." << std::endl;
+		if (!_signed) {
+			throw(NotSignedException());
+		} else {
+			std::cout << "bruiiiuizuizuizouiii...";
+			srand(time(NULL));
+			int rand_value = rand();
+			rand_value = rand_value % 2;
+			if (rand_value == 1) {
+				std::cout << _target << " has been robotomized successfully !"
+					<< std::endl;
+			} else {
+				std::cout << "Robotomy of " << _target << " failed."
+					<< std::endl;
+			}
+		}
 	}
 	return ;
 }

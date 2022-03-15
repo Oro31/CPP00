@@ -25,7 +25,7 @@ class	RobotomyRequestForm : public Form {
 	int			getExeGrade(void) const;
 
 	void	beSigned(Bureaucrat &bureaucrat);
-	void	execute(void);
+	void	execute(Bureaucrat const &execcutor) const;
 
 /*	class	GradeTooHighException : public std::exception {
 		const char	*what(void) const throw();

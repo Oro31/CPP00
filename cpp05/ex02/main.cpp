@@ -58,17 +58,17 @@ int	main(void) {
 		ShrubberyCreationForm	first("first");
 		RobotomyRequestForm		second("second");
 		PresidentialPardonForm	third("third");
-		std::cout << first << std::endl;
-		Bureaucrat	al("Albert", 50);
+		Bureaucrat	al("Albert", 20);
+		std::cout << al << std::endl;
 		al.signForm(first);
 		al.signForm(second);
 		al.signForm(third);
 		std::cout << first << std::endl;
 		std::cout << second << std::endl;
 		std::cout << third << std::endl;
-		first.execute();
-		second.execute();
-		third.execute();
+		first.execute(al);
+		second.execute(al);
+		third.execute(al);
 	}
 	catch(std::exception &e) {
 		std::cout << e.what() << std::endl;

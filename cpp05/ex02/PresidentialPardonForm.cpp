@@ -80,6 +80,16 @@ void	PresidentialPardonForm::beSigned(Bureaucrat &bureaucrat) {
 		_signed = true;
 }
 
-void	PresidentialPardonForm::execute() {
-	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+void	PresidentialPardonForm::execute(Bureaucrat const &executor) const {
+	if (executor.getGrade() > _exe_grade) {
+		throw(GradeTooLowException());
+	} else {
+		if (!_signed) {
+			throw(NotSignedException());
+		} else {
+			std::cout << _target << " has been pardoned by Zaphod Beeblebrox."
+				<< std::endl;
+		}
+	}
+	return ;
 }

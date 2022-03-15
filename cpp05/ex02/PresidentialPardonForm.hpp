@@ -23,7 +23,7 @@ class	PresidentialPardonForm : public Form {
 	int			getExeGrade(void) const;
 
 	void	beSigned(Bureaucrat &bureaucrat);
-	void	execute(void);
+	void	execute(Bureaucrat const &executor) const;
 
 /*	class	GradeTooHighException : public std::exception {
 		const char	*what(void) const throw();

@@ -24,7 +24,7 @@ class	ShrubberyCreationForm : public Form {
 	int			getExeGrade(void) const;
 
 	void	beSigned(Bureaucrat &bureaucrat);
-	void	execute(void);
+	void	execute(Bureaucrat const &executor) const;
 
 /*	class	GradeTooHighException : public std::exception {
 		const char	*what(void) const throw();
@@ -36,11 +36,11 @@ class	ShrubberyCreationForm : public Form {
 */
 	private:
 
-	const std::string	_target;
 	const std::string	_name;
 	bool				_signed;
 	const int			_sign_grade;
 	const int			_exe_grade;
+	const std::string	_target;
 };
 
 std::ostream	&operator<<(std::ostream &out, const ShrubberyCreationForm &form);
