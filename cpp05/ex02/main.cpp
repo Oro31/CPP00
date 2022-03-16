@@ -4,7 +4,7 @@
 #include "PresidentialPardonForm.hpp"
 
 int	main(void) {
-/*	try {
+	try {
 		Bureaucrat	al("Albert", 1);
 		std::cout << al << std::endl;
 		al.increment();
@@ -46,7 +46,7 @@ int	main(void) {
 		std::cout << e.what() << std::endl;
 	}
 	try {
-		ShrubberyCreationForm	first("first", 2, 80);
+		ShrubberyCreationForm	first("first");
 		Bureaucrat	bb("Beber", 75);
 		std::cout << first << std::endl;
 		bb.signForm(first);
@@ -54,7 +54,7 @@ int	main(void) {
 	catch(std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-*/	try {
+	try {
 		ShrubberyCreationForm	first("first");
 		RobotomyRequestForm		second("second");
 		PresidentialPardonForm	third("third");

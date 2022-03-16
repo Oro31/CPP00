@@ -1,4 +1,5 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form(void) : _name("Default"), _signed(false),
 	_sign_grade(1), _exe_grade(150) {
@@ -76,6 +77,10 @@ int	Form::getExeGrade(void) const {
 	return _exe_grade;
 }
 
+void	Form::setSigned(bool sign) {
+	_signed = sign;
+}
+
 void	Form::beSigned(Bureaucrat &bureaucrat) {
 	if (bureaucrat.getGrade() > _exe_grade)
 		throw(GradeTooLowException());
@@ -86,11 +91,15 @@ void	Form::beSigned(Bureaucrat &bureaucrat) {
 void	Form::execute(Bureaucrat const &executor) const {
 	if (executor.getGrade() <= _exe_grade) {
 		if (_signed) {
-			std::cout << "Execution launch...\n";
+			this->action();
 		} else {
 			throw(NotSignedException());
 		}
 	} else {
 		throw(GradeTooLowException());
 	}
+}
+
+void	Form::action(void) const {
+	std::cout << "you shouldn't see this message";
 }

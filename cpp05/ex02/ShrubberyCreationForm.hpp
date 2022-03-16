@@ -17,29 +17,11 @@ class	ShrubberyCreationForm : public Form {
 	~ShrubberyCreationForm(void);
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &form);
 
-	std::string	getName(void) const;
 	std::string	getTarget(void) const;
-	bool		getSigned(void) const;
-	int			getSignGrade(void) const;
-	int			getExeGrade(void) const;
+	void	action(void) const;
 
-	void	beSigned(Bureaucrat &bureaucrat);
-	void	execute(Bureaucrat const &executor) const;
-
-/*	class	GradeTooHighException : public std::exception {
-		const char	*what(void) const throw();
-	};
-
-	class	GradeTooLowException : public std::exception {
-		const char	*what(void) const throw();
-	};
-*/
 	private:
 
-	const std::string	_name;
-	bool				_signed;
-	const int			_sign_grade;
-	const int			_exe_grade;
 	const std::string	_target;
 };
 
