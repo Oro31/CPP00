@@ -20,9 +20,11 @@ class	Bureaucrat {
 
 	void	increment(void);
 	void	decrement(void);
-	void	signForm(ShrubberyCreationForm &form);
+	void	signForm(Form &form);
+/*	void	signForm(ShrubberyCreationForm &form);
 	void	signForm(RobotomyRequestForm &form);
 	void	signForm(PresidentialPardonForm &form);
+*/	void	executeForm(Form const &form);
 
 	class	GradeTooHighException : public std::exception {
 		const char	*what(void) const throw();

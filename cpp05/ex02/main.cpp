@@ -66,9 +66,9 @@ int	main(void) {
 		std::cout << first << std::endl;
 		std::cout << second << std::endl;
 		std::cout << third << std::endl;
-		first.execute(al);
-		second.execute(al);
-		third.execute(al);
+		al.executeForm(first);
+		al.executeForm(second);
+		al.executeForm(third);
 	}
 	catch(std::exception &e) {
 		std::cout << e.what() << std::endl;

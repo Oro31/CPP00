@@ -80,7 +80,7 @@ void	Bureaucrat::decrement(void) {
 	return ;
 }
 
-void	Bureaucrat::signForm(ShrubberyCreationForm &form) {
+void	Bureaucrat::signForm(Form &form) {
 	std::cout << _name;
 	if (form.getSigned() == true) {
 		std::cout << " couldn't sign " << form.getName()
@@ -97,36 +97,14 @@ void	Bureaucrat::signForm(ShrubberyCreationForm &form) {
 	}
 }
 
-void	Bureaucrat::signForm(RobotomyRequestForm &form) {
-	std::cout << _name;
-	if (form.getSigned() == true) {
-		std::cout << " couldn't sign " << form.getName()
-			<< " because form is already signed." << std::endl;
-	} else {
-		try {
-			form.beSigned(*this);
-			std::cout << " signed " << form.getName() << std::endl;
-		}
-		catch(std::exception &e) {
-			std::cout << " couldn't sign " << form.getName()
-				<< " because " << e.what() << std::endl;
-		}
-	}
-}
-
-void	Bureaucrat::signForm(PresidentialPardonForm &form) {
-	std::cout << _name;
-	if (form.getSigned() == true) {
-		std::cout << " couldn't sign " << form.getName()
-			<< " because form is already signed." << std::endl;
-	} else {
-		try {
-			form.beSigned(*this);
-			std::cout << " signed " << form.getName() << std::endl;
-		}
-		catch(std::exception &e) {
-			std::cout << " couldn't sign " << form.getName()
-				<< " because " << e.what() << std::endl;
-		}
+void	Bureaucrat::executeForm(Form const &form) {
+	try {
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName()
+			<< std::endl;
+	} catch(std::exception &e) {
+		std::cout << _name << " cannot execute " << form.getName()
+			<< std::endl;
+		std::cout << e.what() << std::endl;
 	}
 }
