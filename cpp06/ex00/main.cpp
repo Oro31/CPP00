@@ -2,112 +2,76 @@
 #include <limits>
 #include <cstdlib>
 
-enum e_type {
-	CHAR = 0,
-	INT,
-	DOUBLE,
-	FLOAT
-};
-
-void	print_int(std::string str) {
-	int	i = -1;
-	int left = 0;
-	while (str[++i] >= '0' && str[i] <= '9') {
-		left = (left * 10) + ((int)str[i] - 48);
+void	char_cast(std::string str, double f) {
+	if (str.length() > 1)
+		if (f >= 32 && f <= 127)
+			std::cout << "char: " << static_cast<char>(f) << std::endl;
+		else
+			std::cout << "char: Impossible\n";
+	else {
+		if (str[0] >= '0' && str[0] <= '9')
+			std::cout << "char: Non displayable\n";
+		else
+			std::cout << "char: " << str[0] << std::endl;
 	}
-	std::cout << left << std::endl;
 }
 
-void	print_double(std::string str) {
+int	check_error(char *av) {
+	int	nb_dot = 0;
+	int	nb_num = 0;
+	int	nb_f = 0;
+	int	is_neg = 0;
 	int	i = -1;
-	int left = 0;
-	int	right = 0;
-	while (str[++i] >= '0' && str[i] <= '9') {
-		left = (left * 10) + ((int)str[i] - 48);
+	if (av[++i] == '-')
+		is_neg = 1;
+	else
+		i--;
+	while (av[++i]) {
+		if (av[i] == '.')
+			nb_dot++;
+		if (av[i] >= '0' && av[i] <= '9')
+			nb_num++;
+		if (av[i] == 'f')
+			nb_f++;
 	}
-	if (str[i] == '.') {
-		while (str[++i] >= '0' && str[i] <= '9') {
-			right = (right * 10) + ((int)str[i] - 48);
-		}
-	}
-	std::cout << left << '.' << right << std::endl;
-	return ;
-}
-
-void	print_float(std::string str) {
-	int	i = -1;
-	int left = 0;
-	int	right = 0;
-	while (str[++i] >= '0' && str[i] <= '9') {
-		left = (left * 10) + ((int)str[i] - 48);
-	}
-	if (str[i] == '.') {
-		while (str[++i] >= '0' && str[i] <= '9') {
-			right = (right * 10) + ((int)str[i] - 48);
-		}
-	}
-	std::cout << left << '.' << right << "f\n";
-	return ;
+	if (nb_dot > 1)
+		return 1;
+	if (nb_f > 1)
+		return 1;
+	if (nb_f == 1 && nb_dot == 0)
+		return 1;
+	if (nb_num < i + nb_dot + nb_f + is_neg)
+		return 1;
 }
 
 int	main(int argc, char **argv) {
 	if (argc != 2) {
 		std::cout << "Error: wrong argument" << std::endl;
 		return 0;
-	}
+	};
 	if (argv[1][0] == '\0') {
 		std::cout << "error: empty string" << std::endl;
 		return 0;
 	}
+	if (check_error(argv[1]))
+		return 0;
+	double f = atof(argv[1]);
+	double min_inf = std::numeric_limits<double>::infinity() * (-1);
 	std::string	str = "";
 	str.append(argv[1]);
-	print_float(str);
-	print_double(str);
-	print_int(str);
+	char_cast(str, f);
+	if (str == "nan" || str == "nanf" || f == min_inf ||
+			std::numeric_limits<double>::infinity() == f)
+		std::cout << "int: Impossible\n";
+	else
+		std::cout << "int: " << static_cast<int>(f) << "\n";
+	if (f == static_cast<int>(f)) {
+		std::cout << "float: " << f << ".0f\n";
+		std::cout << "double: " << f << ".0\n";
+	}
+	else {
+		std::cout << "float: " << f << "f\n";
+		std::cout << "double: " << f << std::endl;
+	}
 	return 0;
-//	for (int i = 0; argv[1][i]; i++) {
-//	}
-
-//	int	nb_alpha = 0;
-//	int	nb_dot = 0;
-/*	int	i = -1;
-	int left = 0;
-	int	right = 0;
-	while (argv[1][++i] >= '0' && argv[1][i] <= '9') {
-		left = (left * 10) + ((int)argv[1][i] - 48);
-	}
-	if (argv[1][i] == '.') {
-		while (argv[1][++i] >= '0' && argv[1][i] <= '9') {
-			right = (right * 10) + ((int)argv[1][i] - 48);
-		}
-	}
-	std::cout << left << '.' << right << "f\n";
-	return 0;*/
-/*	if (argv[1][1] == '\0') {
-		if (argv[1][0] < 32 || argv[1][0] > 127)
-			std::cout << "Char: Non displayable" << std::endl;
-		else
-			std::cout << "Char: " << argv[1][0] << std::endl;
-		if (argv[1][0] < '0' || argv[1][0] > '9')
-			std::cout << "Int: Impossible" << std::endl;
-		else
-			std::cout << "Int: " << (int)argv[1][0] - 48 << std::endl;
-	}
-	while (argv[1][++i]) {
-		if ((argv[1][i] < '0' || argv[1][i] > '9') && argv[1][i] != '.')
-			nb_alpha++;
-		if (argv[1][i] == '.')
-			nb_dot++;
-	}
-	if (nb_alpha > 2) {
-		std::cout << "too many alpha" << std::endl;
-		return 0;
-	}
-	if (nb_dot > 1) {
-		std::cout << "too many dot" << std::endl;
-		return 0;
-	}
-	if (argv[1][--i] == 'f' && nb_dot == 1){
-		std::cout << "float" << std::endl;
-	}*/
 }
