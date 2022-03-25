@@ -25,6 +25,7 @@ int	is_float(std::string av) {
 	int	nb_f = 0;
 	int	is_neg = 0;
 	int	nb_num = 0;
+	int	dec = 0;
 	int	i = -1;
 	if (av == "nanf" || av == "-inff" || av == "+inff")
 		return 1;
@@ -37,10 +38,13 @@ int	is_float(std::string av) {
 			nb_dot++;
 		if (av[i] == 'f')
 			nb_f++;
-		if (av[i] >= '0' && av[i] <= '9')
+		if (av[i] >= '0' && av[i] <= '9' && nb_dot == 0)
 			nb_num++;
+		if (av[i] >= '0' && av[i] <='9' && nb_dot >= 1)
+			dec++;
 	}
-	if (nb_dot == 1 && nb_f == 1 && (nb_num + is_neg) == (i - 2)) {
+	if (nb_num > 0 && dec > 0 && nb_dot == 1 && nb_f == 1
+			&& (dec + nb_num + is_neg) == (i - 2)) {
 		double	f = atof(av.c_str());
 		if (f < std::numeric_limits<float>::max() * -1
 				|| f > std::numeric_limits<float>::max()) {
@@ -56,6 +60,7 @@ int	is_double(std::string av) {
 	int	nb_dot = 0;
 	int	is_neg = 0;
 	int	nb_num = 0;
+	int	dec = 0;
 	int	i = -1;
 	if (av == "nan" || av == "-inf" || av == "+inf")
 		return 1;
@@ -66,10 +71,13 @@ int	is_double(std::string av) {
 	while (av[++i]) {
 		if (av[i] == '.')
 			nb_dot++;
-		if (av[i] >= '0' && av[i] <= '9')
+		if (av[i] >= '0' && av[i] <= '9' && nb_dot == 0)
 			nb_num++;
+		if (av[i] >= '0' && av[i] <='9' && nb_dot >= 1)
+			dec++;
 	}
-	if (nb_dot == 1 && (nb_num + is_neg) == (i - 1))
+	if (nb_num > 0 && dec > 0 && nb_dot == 1
+			&& (dec + nb_num + is_neg) == (i - 1))
 			return 1;
 	return 0;
 }
@@ -116,16 +124,16 @@ void	char_casting(std::string str, char f) {
 	if (f < 32 || f > 126)
 		std::cout << "char: Non displayable\n";
 	else
-		std::cout << "char: " << f << "\n";
-	if (imp_int(str, static_cast<double>(f)))
+		std::cout << "char: '" << f << "'" << "\n";
+	if (str[0] < '0' || str[0] > '9')
 		std::cout << "int: Impossible\n";
 	else
-		std::cout << "int: " << f << "\n";
-	if (imp_float(str, static_cast<double>(f)))
+		std::cout << "int: " << static_cast<int>(f) << "\n";
+	if (str[0] < '0' || str[0] > '9')
 		std::cout << "float: Impossible\n";
 	else
 		std::cout << "float: " << static_cast<float>(f) << ".0f\n";
-	if (str.length() == 1 && (str[0] < '0' || str[0] > '9'))
+	if (str[0] < '0' || str[0] > '9')
 		std::cout << "double: Impossible\n";
 	else
 		std::cout << "double: " << static_cast<double>(f) << ".0\n";
@@ -138,7 +146,7 @@ void	int_casting(std::string str, int f) {
 	else if (f < 32 || f > 126)
 		std::cout << "char: Non displayable\n";
 	else
-		std::cout << "char: " << static_cast<char>(f) << "\n";
+		std::cout << "char: '" << static_cast<char>(f) << "'" << "\n";
 	if (imp_int(str, f))
 		std::cout << "int: Impossible\n";
 	else
@@ -160,7 +168,7 @@ void	float_casting(std::string str, float f) {
 	else if (f < 32 || f > 126)
 		std::cout << "char: Non displayable\n";
 	else
-		std::cout << "char: " << static_cast<char>(f) << "\n";
+		std::cout << "char: '" << static_cast<char>(f) << "'" << "\n";
 	if (imp_int(str, f))
 		std::cout << "int: Impossible\n";
 	else
@@ -186,7 +194,7 @@ void	double_casting(std::string str, double f) {
 	else if (f < 32 || f > 126)
 		std::cout << "char: Non displayable\n";
 	else
-		std::cout << "char: " << static_cast<char>(f) << "\n";
+		std::cout << "char: '" << static_cast<char>(f) << "'" << "\n";
 	if (imp_int(str, f))
 		std::cout << "int: Impossible\n";
 	else
@@ -219,7 +227,7 @@ int	main(int argc, char **argv) {
 	double	f = atof(argv[1]);
 	switch  (check_error(str)) {
 		case 0:
-			char_casting(str, static_cast<char>(f));
+			char_casting(str, str[0]);
 			break ;
 		case 1:
 			int_casting(str, static_cast<int>(f));
