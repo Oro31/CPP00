@@ -18,6 +18,7 @@ public:
 	~Array();
 	Array &operator=(const Array<T> &array);
 	T &operator[](size_t position) const;
+	T &operator[](size_t position);
 
 	size_t	size() const;
 };
@@ -60,6 +61,16 @@ size_t Array<T>::size() const {
 
 template <typename T>
 T &Array<T>::operator[](size_t position) const {
+	if (position >= this->_size) {
+		std::stringstream buffer;
+		buffer << "Bad position: " << position;
+		throw(std::out_of_range(buffer.str()));
+	}
+	return this->_element[position];
+}
+
+template <typename T>
+T &Array<T>::operator[](size_t position) {
 	if (position >= this->_size) {
 		std::stringstream buffer;
 		buffer << "Bad position: " << position;
