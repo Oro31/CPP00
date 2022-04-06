@@ -2,7 +2,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
 
 CC = c++
 
-NAME = find
+NAME = span
 
 SRC = main.cpp	\
 	  Span.cpp
